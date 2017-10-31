@@ -122,6 +122,11 @@ public class Main_frm extends JFrame {
  jIFAddCategoryCP.add(jsp1,BorderLayout.CENTER);
  jIfAddCategory.setJMenuBar(jIFAddCategoryJmb);
  jIfAddCategory.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+ jIFAddCategoryJmb.add(jmiDataLoad);
+ jIFAddCategoryJmb.add(jmiDataNew);
+ jIFAddCategoryJmb.add(jmiDataClose);
+ jdp.add(jIfAddCategory);
+
 
 //Menu------------------------------------------------------------------------------------------------------------------
         jMenuItemFExit.addActionListener(new ActionListener() {
