@@ -118,6 +118,10 @@ public class Main_frm extends JFrame {
      }
  });
  jIFAddCategoryCP = jIfAddCategory.getContentPane();
+ jIFAddCategoryCP.setLayout(new BorderLayout(5,5));
+ jIFAddCategoryCP.add(jsp1,BorderLayout.CENTER);
+ jIfAddCategory.setJMenuBar(jIFAddCategoryJmb);
+ jIfAddCategory.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 //Menu------------------------------------------------------------------------------------------------------------------
         jMenuItemFExit.addActionListener(new ActionListener() {
