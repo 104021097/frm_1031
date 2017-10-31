@@ -26,6 +26,7 @@ public class Main_frm extends JFrame {
     private JMenuItem jMenuItemFLotto = new JMenuItem("Lotto");
     private JMenuItem jMenuItemCalculator = new JMenuItem("Calculator");
     private JMenuItem jMenuItemFont = new JMenuItem("Font");
+    private JMenuItem jMenuItemAddCategory = new JMenuItem("Add Category");
 
     private JInternalFrame jInternalFrame = new JInternalFrame();
     private JInternalFrame jInternalFrame_cal = new JInternalFrame();
@@ -48,12 +49,22 @@ public class Main_frm extends JFrame {
     private JLabel jlbFontStyle = new JLabel("Style");
     private JLabel jlbFontSize = new JLabel("Size");
     private JTextField jtfFamily = new JTextField("Times New Romans");
-    private JTextField jtfStyle = new JTextField("PLAIN");
+    //private JTextField jtfStyle = new JTextField("PLAIN");
     private JTextField jtfSize = new JTextField("20");
     private String[] options = {"PLAIN","BOLD","ITALIC","BOLD+ITALIC"};
     private JComboBox jcbFStyle = new JComboBox(options);
-//---------------------------------------------------------------------------------------------------------------------
-
+//20171031 Add Category-------------------------------------------------------------------------------------------------
+    private  JInternalFrame jIfAddCategory = new JInternalFrame();
+    private Container jIFAddCategoryCP;
+    private JMenuBar jIFAddCategoryJmb = new JMenuBar();
+    private JMenu jmData = new JMenu("Data");
+    private JMenuItem jmiDataLoad = new JMenuItem("Load");
+    private JMenuItem jmiDataNew = new JMenuItem("New");
+    private JMenuItem jmiDataClose = new JMenuItem("Close");
+    private JFileChooser jfc = new JFileChooser();
+    private JTextArea jta = new JTextArea();
+    private JScrollPane jsp1 = new JScrollPane(jta);
+ //---------------------------------------------------------------------------------------------------------------------
     private int frmW = 500, frmH = 450;
     private Login_frm loginFrm;
     public Main_frm(Login_frm frm){
@@ -98,7 +109,17 @@ public class Main_frm extends JFrame {
         jpanel1.add(jcbFStyle);
         //jpanel1.add(jtfStyle);
         jpanel1.add(jtfSize);
+        this.setTitle("Main Frame");
+ //Add Category---------------------------------------------------------------------------------------------------------
+ jMenuItemAddCategory.addActionListener(new ActionListener() {
+     @Override
+     public void actionPerformed(ActionEvent e) {
+         jIfAddCategory.setVisible(true);
+     }
+ });
+ jIFAddCategoryCP = jIfAddCategory.getContentPane();
 
+//Menu------------------------------------------------------------------------------------------------------------------
         jMenuItemFExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,7 +142,7 @@ public class Main_frm extends JFrame {
                 jInternalFrame_cal.setVisible(true);
             }
         });
-
+//Menu Button-----------------------------------------------------------------------------------------------------------
 
         jbtnClose.addActionListener(new ActionListener() {
             @Override
