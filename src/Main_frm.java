@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Random;
 
 public class Main_frm extends JFrame {
@@ -83,10 +86,12 @@ public class Main_frm extends JFrame {
         jmG.add(jMenuItemFLotto);
         jmG.add(jMenuItemCalculator);
         jmS.add(jMenuItemFont);
+        jmF.add(jMenuItemAddCategory);
         jmb.add(jmF);
         jmb.add(jmS);
         jmb.add(jmG);
         jmb.add(jmA);
+
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -121,17 +126,45 @@ public class Main_frm extends JFrame {
  jIFAddCategoryCP.setLayout(new BorderLayout(5,5));
  jIFAddCategoryCP.add(jsp1,BorderLayout.CENTER);
  jIfAddCategory.setJMenuBar(jIFAddCategoryJmb);
+ jIfAddCategory.setBounds(0,0,500,500);
  jIfAddCategory.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+ jIFAddCategoryJmb.add(jmData);
  jIFAddCategoryJmb.add(jmiDataLoad);
  jIFAddCategoryJmb.add(jmiDataNew);
  jIFAddCategoryJmb.add(jmiDataClose);
  jdp.add(jIfAddCategory);
+ jmiDataLoad.addActionListener(new ActionListener() {
+     @Override
+     public void actionPerformed(ActionEvent e) {
+         if(jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+             try{
+                 File inFile = jfc.getSelectedFile();
+                 BufferedReader br = new BufferedReader(new FileReader(inFile));
+                 System.out.println("File Name:"+ inFile.getName());
+                 String str = "";
+                 while ((str = br.readLine()) !=null){
+                     jta.append(str + "\n");
+                 }
+                 System.out.println("Read file finished");
+             }catch (Exception ioe){
+                 JOptionPane.showMessageDialog(null,"Open file error:"+ioe.toString());
+             }
+         }
+     }
+ });
+        jmiDataClose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
 
 //Menu------------------------------------------------------------------------------------------------------------------
         jMenuItemFExit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 System.exit(0);
             }
         });
