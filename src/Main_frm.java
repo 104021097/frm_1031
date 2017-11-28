@@ -30,14 +30,21 @@ public class Main_frm extends JFrame {
     private JMenuItem jMenuItemCalculator = new JMenuItem("Calculator");
     private JMenuItem jMenuItemFont = new JMenuItem("Font");
     private JMenuItem jMenuItemAddCategory = new JMenuItem("Add Category");
+    private JMenuItem jMenuItemServer = new JMenuItem("Sever");
 
     private JInternalFrame jInternalFrame = new JInternalFrame();
     private JInternalFrame jInternalFrame_cal = new JInternalFrame();
+    private JInternalFrame jInternalFrame_server = new JInternalFrame();
     private Container jifCP;
+    private Container jifCP_sever;
     private JPanel jpn = new JPanel(new GridLayout(1,6,5,5));
     private JPanel jpn1 = new JPanel(new GridLayout(1,2,5,5));
+    private JPanel jpn_server = new JPanel(new GridLayout(3,3,5,5));
+    private JPanel jpn_server_E = new JPanel(new GridLayout(8,1,5,5));
+
 
     private JLabel jlbs[] = new JLabel[6];
+
     private int data[] = new int[6];
     private Random rnd = new Random(System.currentTimeMillis());
 
@@ -46,6 +53,16 @@ public class Main_frm extends JFrame {
     private JButton jbtnRegen = new JButton("Generate");
     private JButton jbtnClose_Cal = new JButton("Close");
     private JButton jbtnRegen_Cal = new JButton("Generate");
+//20171128 Sever -------------------------------------------------------------------------------------------------
+    private JButton jbtn_server_Start = new JButton("Start");
+    private JButton jbtn_server_Stop = new JButton("Stop");
+    private JButton jbtn_server_Exit = new JButton("Exit");
+    private JButton jbtn_server_Send = new JButton("Send");
+    private JButton jbtns_server[] = new JButton[9];
+    private JLabel jl_port = new JLabel("Port:");
+    private JLabel jl_server = new JLabel("Server IP:");
+    private JLabel jl_ip = new JLabel();
+    private JTextArea jta_port = new JTextArea();
 //20171031 Font--------------------------------------------------------------------------------------------------------
     private JPanel jpanel1 = new JPanel(new GridLayout(2,3,5,5));
     private JLabel jlbFontFamily = new JLabel("Family");
@@ -68,7 +85,7 @@ public class Main_frm extends JFrame {
     private JTextArea jta = new JTextArea();
     private JScrollPane jsp1 = new JScrollPane(jta);
  //---------------------------------------------------------------------------------------------------------------------
-    private int frmW = 500, frmH = 450;
+    private int frmW = 800, frmH = 700;
     private Login_frm loginFrm;
     public Main_frm(Login_frm frm){
         loginFrm = frm;
@@ -78,6 +95,7 @@ public class Main_frm extends JFrame {
         this.setBounds(screenW/2-frmW/2,screenH/2-frmH/2,frmW,frmH);
         jInternalFrame.setBounds(0,0,200,100);
         jInternalFrame_cal.setBounds(0,0,400,400);
+        jInternalFrame_server.setBounds(0,0,500,500);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setJMenuBar(jmb);
         this.setContentPane(jdp);
@@ -85,6 +103,7 @@ public class Main_frm extends JFrame {
         jmF.add(jMenuItemFExit);
         jmG.add(jMenuItemFLotto);
         jmG.add(jMenuItemCalculator);
+        jmG.add(jMenuItemServer);
         jmS.add(jMenuItemFont);
         jmF.add(jMenuItemAddCategory);
         jmb.add(jmF);
@@ -107,11 +126,21 @@ public class Main_frm extends JFrame {
         jpnCal.add(jtf);
         jtf.setEditable(false);
 
+        jpn_server_E.add(jl_server);
+        jpn_server_E.add(jl_ip);
+        jpn_server_E.add(jl_port);
+        jpn_server_E.add(jta_port);
+        jpn_server_E.add(jbtn_server_Start);
+        jpn_server_E.add(jbtn_server_Stop);
+        jpn_server_E.add(jbtn_server_Exit);
+        jpn_server_E.add(jbtn_server_Send);
+
         jpanel1.add(jlbFontFamily);
         jpanel1.add(jlbFontStyle);
         jpanel1.add(jlbFontSize);
         jpanel1.add(jtfFamily);
         jpanel1.add(jcbFStyle);
+
         //jpanel1.add(jtfStyle);
         jpanel1.add(jtfSize);
         this.setTitle("Main Frame");
@@ -184,6 +213,13 @@ public class Main_frm extends JFrame {
                 jInternalFrame_cal.setVisible(true);
             }
         });
+        jMenuItemServer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jdp.add(jInternalFrame_server);
+                jInternalFrame_server.setVisible(true);
+            }
+        });
 //Menu Button-----------------------------------------------------------------------------------------------------------
 
         jbtnClose.addActionListener(new ActionListener() {
@@ -202,6 +238,12 @@ public class Main_frm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jInternalFrame_cal.dispose();
+            }
+        });
+        jbtn_server_Exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jInternalFrame_server.dispose();
             }
         });
 //20171031-------------------------------------------------------------------------------------------------------------
@@ -237,6 +279,10 @@ public class Main_frm extends JFrame {
         jifCP.setLayout(new BorderLayout(5,5));
         jifCP.add(jpn, BorderLayout.CENTER);
         jifCP.add(jpn1, BorderLayout.SOUTH);
+        jifCP_sever = jInternalFrame_server.getContentPane();
+        jifCP_sever.setLayout(new BorderLayout(5,5));
+        jifCP_sever.add(jpn_server,BorderLayout.CENTER);
+        jifCP_sever.add(jpn_server_E,BorderLayout.EAST);
 //20171024 Lotto-------------------------------------------------------------------------------------------------------
         for(int i=0;i<6;i++){
             jlbs[i] = new JLabel();
@@ -256,6 +302,11 @@ public class Main_frm extends JFrame {
             }
         });
 //---------------------------------------------------------------------------------------------------------------------
+        for (int i=0;i<9;i++){
+            jbtns_server[i] = new JButton();
+            jbtns_server[i].setFont(new Font(null,Font.PLAIN,22));
+
+        }
 
 
 
