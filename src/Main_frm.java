@@ -305,6 +305,23 @@ public class Main_frm extends JFrame {
         for (int i=0;i<9;i++){
             jbtns_server[i] = new JButton();
             jbtns_server[i].setFont(new Font(null,Font.PLAIN,22));
+            jbtns_server[i].setEnabled(false);
+            jbtns_server[i].setOpaque(true);
+            jbtns_server[i].setBackground(new Color(128,128,128));
+            jpn_server.add(jbtns_server[i]);
+            jbtns_server[i].addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JButton jbtnTemp = (JButton)e.getSource();
+                    int tmpval = 0;
+                    if (flag && jbtnTemp.getText().equals("")){
+                        jbtnTemp.setText("0");
+                        if (jbtnTemp.equals(jbtns_server[0])){
+                            tmpval = 0;
+                        }else if()
+                    }
+                }
+            });
 
         }
 
